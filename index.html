@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./api.css">
+  <link rel="stylesheet" href="./icofont/icofont.min.css">
+  <link rel="stylesheet" href="./bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+  <title>NONSOSTORE</title>
+</head>
+
+<body>
+
+
+  <header id="header">
+    <nav id="on" class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">NONSOGLOBAL STORE</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+          aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+          <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">HOME</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                CATEGORY
+              </a>
+              <ul class="dropdown-menu">
+                <li id="men" onclick="men()"><a class="dropdown-item" href="#">MEN CLOTHING</a></li>
+                <li id="women" onclick="women()"><a class="dropdown-item" href="#">WOMEN CLOTHING</a></li>
+                <li id="elec" onclick="elect()"><a class="dropdown-item" href="#">ELECTRONICS</a></li>
+                <hr>
+                <li id="jewe" onclick="jewe()"><a class="dropdown-item" href="#">JEWELERY</a></li>
+
+              </ul>
+            </li>
+            <i id="cart" class="icofont-shopping-cart"></i>
+          </ul>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div style="margin-bottom: 1em; cursor: pointer;">
+    <img src="./api/free-delivery-banner.gif" alt="" width="1080em">
+  </div>
+  <div style="margin-bottom: 1em; cursor: pointer; width: auto;">
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000">
+          <img src="./api/61DUO0NqyyL._SX3000_.jpg" class="d-block img-fluid h-25" alt="...">
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+          <img src="./api/61jovjd+f9L._SX3000_.jpg" class="d-block img-fluid h-25" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="./api/71qid7QFWJL._SX3000_.jpg" class="d-block img-fluid h-25" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="./api/61TD5JLGhIL._SX3000_.jpg" class="d-block img-fluid h-25" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="./api/71tIrZqybrL._SX3000_.jpg" class="d-block img-fluid h-25" alt="...">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  <div id="show">
+  </div>
+  <div>
+    <div id="sho"></div>
+  </div>
+</body>
+
+</html>
+
+<script>
+  let theArr = ["Thier aray", "his array", "Her Array"]
+  let porarray = []
+
+  fetch('https://dummyjson.com/products/search?q=phone')
+    .then(res => res.json())
+    .then(console.log);
+
+  // let screen = fetch("https://fakestoreapi.com/products")
+  fetch('https://dummyjson.com/products/')
+    .then(res => res.json())
+    .then(json => console.log(json))
+
+  let screen = document.getElementById("show")
+  let mapo = document.getElementById("sho")
+  fetch("https://fakestoreapi.com/products")
+    .then(res => res.json())
+    .then(json => {
+      console.log(json);
+      //  screen.innerHTML = data.todo;
+      for (let index = 0; index < json.length; index++) {
+        const element = json[index];
+
+        screen.innerHTML += `
+        <div onclick="veiwitem(${element.id})" class="enn">
+                <img class="img" src="${element.image}" alt="">
+           <h1 class="non"> ${element.category}</h1>
+           <p id="cov" class="title"> ${element.title}</p>
+           <h2 class="price">$ ${element.price}</h2>
+            <p class="price"><i id="cert" class="icofont-ui-rate-blank"></i> ${element.rating.rate}</p>
+           <p class="price">${element.rating.count}</p>
+           <div class="cart">
+            <i class="icofont-cart"></i>
+            </div>
+         </div>
+         `
+      }
+    });
+ // let men = document.getElementById("men");
+  let women = document.getElementById("women");
+  let jewe = document.getElementById("jewe");
+  let elec = document.getElementById("elec");
+
+  function men() {
+  //  fetch('https://fakestoreapi.com/products/category/jewelery').then(res=>res.json()).then(json=>console.log(json))
+    document.getElementById("show").innerHTML = "jewelery"
+     console.log(porarray);
+    screen.innerHTML = ""
+
+    for (let index = 0; index < porarray.length; index++) {
+      const element = porarray[index];
+
+      if (element.category != "jewelery") {
+        continue
+      } else {
+        screen.innerHTML += `<button class="pro" data-bs-toggle="modal" data-bs-target="#staticBackdrop2 " onclick="content(${index})">
+                                    <div class="divofimgpro">
+                                        <img class="proimg" src="${porarray.image}" alt="">
+                                    </div>
+                                    <p class="protitle"><b>${element.title}</b></p>
+                                     <p class="proprice">$ ${element.price}</p>
+                                     <p class="proprice"><b>rating:</b> <span class="material-symbols-outlined  tyytty">star</span> ${element.rating.rate}</p>
+                                    
+                                </button>`
+      }
+
+    }
+
+  }
+  //.then(console.log);
+  function veiwitem(id) {
+    console.log(id)
+    localStorage.setItem('productID', id)
+    window.location.href = "apishow.html"
+  }
+
+</script>
